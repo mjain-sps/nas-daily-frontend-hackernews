@@ -4,19 +4,139 @@
   --greyColour: #f2f2f2;
   --blackForText: rgba(0, 0, 0, 0.8);
   --greyForText: rgba(0, 0, 0, 0.5);
-  --font: "Open Sans", sans-serif;
 }
 body {
-  font-family: var(--font);
+  margin: 0px;
+  padding: 0px;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Styling the Header Component */
+.header--wrapper {
+  height: auto;
 }
 .header--logo {
   height: 51px;
+  font-size: 1.6rem;
   color: var(--primaryColour);
+
   font-weight: bolder;
   text-align: center;
+  line-height: 51px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 .header--logo > span {
   color: var(--blackForText);
+  font-size: 1.6rem;
+  margin-left: -7px;
+}
+.navbar {
+  margin: 8px 5px;
+  width: 80%;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-start;
+}
+.navbar > a {
+  background-color: var(--greyColour);
+  border-radius: 12px;
+  border: none;
+  padding: 4px 12px;
+  width: 58px;
+  height: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--blackForText);
+  margin-left: 15px;
+  text-decoration: none;
+}
+.navbar > a:hover {
+  text-decoration: none;
+  color: var(--blackForText);
+}
+.active {
+  background-color: var(--primaryColour) !important;
+}
+/* Home Screen Styling */
+
+.homescreen-wrapper {
+  min-height: 100vh;
+  padding: 20px 7px;
+}
+
+.load--more__button {
+  width: 80%;
+  margin: 0 auto 0 auto;
+}
+.load--more__button > button {
+  background-color: var(--primaryColour);
+  height: 45px;
+  width: 100%;
+  border-radius: 12px;
+  text-align: center;
+  line-height: 15px;
+  padding: 5px 25px;
+
+  border: none;
+}
+
+/* Set us Messages CSS */
+.messages {
+  background-color: #f8d7da;
+  color: maroon;
+  padding: 5px;
+  width: 80%;
+  text-align: center;
+  height: 22px;
+  line-height: 12px;
+  font-size: 13px;
+  margin: 0 auto 0 auto;
+  border-radius: 5px;
+}
+/* Set up Loader CSS */
+.loader {
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 2rem;
+  text-align: center;
+  line-height: 40vh;
+  color: white;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+}
+
+/* Set up story component */
+.story--content {
+  padding: 5px 12px;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+  width: 80%;
+  margin: 0px auto 20px auto;
+}
+.story--title {
+  font-family: "Open Sans", sans-serif;
+  color: var(--blackForText);
+  text-align: left;
+  font-size: 0.9rem;
+  margin: 5px 0px;
+}
+
+.story--body {
+  font-family: "Open Sans", sans-serif;
+  color: var(--greyForText);
+  text-align: justify;
+  font-size: 0.8rem;
+  margin: 5px 0px;
+}
+.story--footer {
+  font-size: 0.7rem;
+  color: var(--greyForText);
 }
