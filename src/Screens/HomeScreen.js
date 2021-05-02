@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-//import modules
-import { Link } from "react-router-dom";
-
 //import components
 import Messages from "../Components/Messages";
 import Loader from "../Components/Loader";
@@ -11,23 +8,29 @@ import Story from "../Components/Story";
 //import API
 import { getStoryID } from "../API";
 
-function HomeScreen({ location, history }) {
+function HomeScreen({ location, history, match }) {
   //Set state constants
   const [storyIDS, setStoryIDS] = useState(null);
   const [pageIndex, setPageIndex] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  //useEffect to get Story Headers
+  //useEffect to get Story Headers.
+  //Based on the story category(which i get from the navbar Links), I will fetch story headers.
+  //Once story headers are fetched, I get complete stories and render them using Story Component
   useEffect(() => {
-    getStoryID("topstories")
-      .then((resp) => setStoryIDS(resp))
-      .catch((error) =>
+    getStoryID(
+      match.params.category ? match.params.category : "topstories"
+    ).then((resp) => {
+      if (resp.statusText === "OK") {
+        setStoryIDS(resp.data);
+      } else {
         setErrorMessage(
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message
-        )
-      );
+          resp.response && resp.response.data.message
+            ? resp.response.data.message
+            : resp.message
+        );
+      }
+    });
 
     //set page
     if (!location.search) {
@@ -35,7 +38,8 @@ function HomeScreen({ location, history }) {
     } else {
       setPageIndex(parseInt(location.search.split("=")[1]));
     }
-  }, [location.search]);
+  }, [location.search, match.params]);
+
   return (
     <div className="homescreen-wrapper">
       {errorMessage ? (
@@ -48,13 +52,13 @@ function HomeScreen({ location, history }) {
           <React.Fragment>
             <div className="story--wrapper">
               {storyIDS
-                .slice((pageIndex - 1) * 5, pageIndex * 5)
+                .slice((pageIndex - 1) * 3, pageIndex * 3)
                 .map((element, index) => {
                   return (
                     <Story
                       storyID={element}
                       pageNumber={pageIndex}
-                      index={index}
+                      key={index}
                     />
                   );
                 })}

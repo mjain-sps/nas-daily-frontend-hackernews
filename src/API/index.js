@@ -4,10 +4,10 @@ import { API_URL } from "../Constants";
 //Function to get Story IDS
 export const getStoryID = async (storyCategory) => {
   try {
-    const { data } = await axios.get(
+    const resp = await axios.get(
       `${API_URL}/${storyCategory}.json/?print=pretty`
     );
-    return data;
+    return resp;
   } catch (error) {
     return error;
   }

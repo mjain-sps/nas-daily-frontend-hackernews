@@ -1,17 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function Header() {
+
+function Header({ location }) {
   return (
     <header className="header--wrapper">
       <div className="header--logo">
-        HACKER <span>NEWS</span>
+        <Link to="/">
+          HACKER <span>NEWS</span>
+        </Link>
       </div>
 
       <div className="navbar">
-        <Link className={window.location.pathname === "/" && "active"}>
+        <Link
+          className={location.pathname === "/" ? "active" : ""}
+          to={{
+            pathname: "/",
+          }}
+        >
           New
         </Link>
-        <Link className={window.location.pathname === "/past" && "active"}>
+        {/* I could not find API for past stories, hence connecting newstories to past. ONLY for demo purpose */}
+        <Link
+          className={location.pathname === "/newstories" ? "active" : ""}
+          to={{ pathname: "/newstories" }}
+        >
           Past
         </Link>
       </div>
